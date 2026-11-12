@@ -1,10 +1,11 @@
 """Builds the Windows (.cur/.ani + install.inf) and GNOME (Xcursor) packages from allset.ALL"""
 import sys, os, io, struct, shutil, tarfile
-sys.path.insert(0,'/home/claude/cur3')
+HERE=os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0,HERE)
 from allset import ALL
 from PIL import Image
 
-OUT='/home/claude/pkg/Opossum_Zeiger'
+OUT=os.path.join(HERE,'ausgabe','Opossum_Zeiger')
 shutil.rmtree(OUT, ignore_errors=True)
 WIN=f'{OUT}/Windows'; os.makedirs(WIN)
 
@@ -81,8 +82,8 @@ open(f'{WIN}/LIESMICH.txt','w',newline='').write(crlf.join([
 ' '+', '.join(sorted(v for k,v in winfile.items() if k not in dict((b,a) for a,b in ROLES))),'']))
 
 # ---------- GNOME / Xcursor ----------
-THEME='Opossum'; GN=f'{OUT}/GNOME'; TD=f'/home/claude/pkg/theme/{THEME}'
-shutil.rmtree('/home/claude/pkg/theme',ignore_errors=True); os.makedirs(f'{TD}/cursors')
+THEME='Opossum'; GN=f'{OUT}/GNOME'; TD=os.path.join(HERE,'ausgabe','theme',THEME)
+shutil.rmtree(os.path.dirname(TD),ignore_errors=True); os.makedirs(f'{TD}/cursors')
 NOMINAL={24:32, 48:64, 96:96}     # nominal size -> image pixels (only integer scaling)
 def xcursor_bytes(frames, ms, hs):
     images=[]
