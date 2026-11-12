@@ -1,0 +1,31 @@
+import sys; sys.path.insert(0,'.')
+import spin, lying, back, variants, extras, plain
+from side import halo
+ALL={  # key: (frames, ms, hotspot, label)
+ 'normal':      (spin.frames,117,(0,0),'Normal'),
+ 'hilfe':       (variants.SETS['hilfe'][0],117,(0,0),'Hilfe'),
+ 'hintergrund': (extras.EXTRAS['hintergrund'][0],117,(0,0),'Hintergrund'),
+ 'beschaeftigt':([halo(back.frame_busy(i)) for i in range(16)],117,(0,0),'Beschäftigt'),
+ 'nicht_verfuegbar':([halo(back.frame_noallowed(i)) for i in range(8)],150,(5,5),'Nicht verfügbar'),
+ 'link':        (lying.frames,150,(2,0),'Link'),
+ 'dnd_frage':   (variants.SETS['dnd_frage'][0],150,(2,0),'Drag&Drop ?'),
+ 'verschieben': (variants.SETS['verschieben'][0],150,(7,4),'Verschieben (Hand)'),
+ 'greifen':     (variants.SETS['greifen'][0],150,(7,6),'Greifen'),
+ 'zoom_plus':   (variants.SETS['zoom_plus'][0],150,(5,5),'Zoom +'),
+ 'zoom_minus':  (variants.SETS['zoom_minus'][0],150,(5,5),'Zoom -'),
+ 'person':      (extras.EXTRAS['person'][0],117,(0,0),'Person'),
+ 'ort':         (extras.EXTRAS['ort'][0],117,(0,0),'Ort'),
+ 'handschrift': (extras.EXTRAS['handschrift'][0],150,(0,0),'Handschrift'),
+ 'pfeil_hoch':  (extras.EXTRAS['pfeil_hoch'][0],150,(5,0),'Alternative'),
+ 'kopieren':    (extras.EXTRAS['kopieren'][0],117,(0,0),'Kopieren'),
+ 'alias':       (extras.EXTRAS['alias'][0],117,(0,0),'Alias'),
+ 'kontextmenue':(extras.EXTRAS['kontextmenue'][0],117,(0,0),'Kontextmenü'),
+ 'text':        ([plain.PLAIN['text']],0,(15,15),'Text'),
+ 'text_schwanz':([plain.PLAIN['text_schwanz']],0,(15,15),'Text (Schwanz)'),
+ 'fadenkreuz':  ([plain.PLAIN['fadenkreuz']],0,(15,15),'Präzision'),
+ 'resize_ns':   ([plain.PLAIN['resize_ns']],0,(15,15),'Größe ↕'),
+ 'resize_ew':   ([plain.PLAIN['resize_ew']],0,(15,15),'Größe ↔'),
+ 'resize_nwse': ([plain.PLAIN['resize_nwse']],0,(15,15),'Größe ↘'),
+ 'resize_nesw': ([plain.PLAIN['resize_nesw']],0,(15,15),'Größe ↗'),
+ 'verschieben_kreuz':([plain.PLAIN['verschieben_kreuz']],0,(15,15),'Verschieben'),
+}
